@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="nl-nl">
+
+<head>
+	<meta charset="UTF-8">
+
+	<title>wavin waves</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/wavin-waves.css">
+	<link rel="stylesheet" href="css/control-points.css">
+	<link rel="stylesheet" href="css/settings.css">
+</head>
+
+<body>
+
+	<div id="waves-frame" class="waves-frame">
+		<svg viewbox="0 0 1200 600" id="waves-svg" class="waves-svg">
+			<use href="#wave-2" fill="#169EFB" />
+			<use href="#wave-1" fill="#3CA872" />
+			<use href="#wave-2" fill="#2F3046" clip-path="url(#clip-path)" />
+
+			<defs>
+				<path id="wave-1" class="wave wave-1" />
+				<path id="wave-2" class="wave wave-2" />
+				<clipPath id="clip-path">
+					<path id="wave-1-as-clip-path" class="wave wave-1" />
+				</clipPath>
+			</defs>
+		</svg>
+	</div>
+
+	<svg id="wave-controls-template" width="0" height="0" xmlns="http://www.w3.org/2000/svg">
+		<g class="ctrl-group">
+			<!-- wave start -->
+			<!-- path -->
+			<path class="radius path-point-radius" data-id="path-point-1-radius" />
+			<ellipse class="orbit" data-id="path-point-1-orbit" />
+			<circle class="orbit-center" data-id="path-point-1-orbit-center" />
+			<circle class="path-point" data-id="path-point-1" />
+
+			<!-- bezier -->
+			<path class="bezier-line" data-id="bezier-line-1" />
+			<path class="radius" data-id="bezier-point-1-radius" />
+			<ellipse class="orbit" data-id="bezier-point-1-orbit" />
+			<circle class="orbit-center" data-id="bezier-point-1-orbit-center" />
+			<circle class="bezier-point" data-id="bezier-point-1" />
+
+			<!-- wave end -->
+			<!-- path -->
+			<path class="radius path-point-radius" data-id="path-point-2-radius" />
+			<ellipse class="orbit" data-id="path-point-2-orbit" />
+			<circle class="orbit-center" data-id="path-point-2-orbit-center" />
+			<circle class="path-point" data-id="path-point-2" />
+
+			<!-- bezier -->
+			<path class="radius" data-id="bezier-point-2-radius" />
+			<path class="bezier-line" data-id="bezier-line-2" />
+			<ellipse class="orbit" data-id="bezier-point-2-orbit" />
+			<circle class="orbit-center" data-id="bezier-point-2-orbit-center" />
+			<circle class="bezier-point" data-id="bezier-point-2" />
+		</g>
+	</svg>
+
+	<div class="settings-wrapper">
+
+		<div class="settings">
+			<div class="meta-settings">
+				<label for="wave-selector">Edit settings for</label> <select id="wave-selector" class="wave-selector"></select>
+				<span class="bezier-for-group">
+					Show bezier controls for
+					<input type="radio" name="bezier-for" value="active" id="bezier-for-active" checked="checked"><label
+						for="bezier-for-active">Active</label>
+					<input type="radio" name="bezier-for" value="none" id="bezier-for-none"><label
+						for="bezier-for-none">None</label>
+					<input type="radio" name="bezier-for" value="all" id="bezier-for-all"><label for="bezier-for-all">All</label>
+				</span>
+
+				<input type="checkbox" class="run-cb" id="run-cb" checked="checked" /><label for="run-cb">Run</label>
+				<!-- <input type="checkbox" id="run-cb" /><label for="run-cb">run</label> -->
+			</div>
+
+			<div id="all-wave-settings"></div>
+		</div>
+
+		<template id="settings-template">
+			<div class="wave-settings">
+				<div class="point-ranges">
+					<h2>curve starting point</h2>
+					<h3>curve point</h3>
+					<div data-id="ranges-start" class="ranges"></div>
+					<h3>bezier control point</h3>
+					<div data-id="ranges-start-ctrl" class="ranges"></div>
+				</div>
+				<div class="point-ranges">
+					<h2>curve ending point</h2>
+					<h3>curve point</h3>
+					<div data-id="ranges-end" class="ranges"></div>
+					<h3>bezier control point</h3>
+					<div data-id="ranges-end-ctrl" class="ranges"></div>
+				</div>
+			</div>
+		</template>
+	</div>
+
+	<script type="module" src="js/wavin-wave-creator.js"></script>
+	<!-- <script type="module" src="js/range-creator.js"></script> -->
+</body>
+
+</html>

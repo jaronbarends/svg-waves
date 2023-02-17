@@ -1,0 +1,24 @@
+/* determines size of part of svg we want to be visible;  */
+.waves-frame {
+  --frame-width: 800px;
+  --frame-height: 400px;
+  position: relative;
+  /* overflow: hidden; */
+  margin: 0 auto;
+  width: var(--frame-width);
+  height: var(--frame-height);
+  border: 1px dotted rgba(0, 0, 0, 0.5);
+}
+
+/* the waves-svg may be bigger than the waves-frame. center it horizontally, and let the top simply be the top */
+.waves-svg {
+  --svg-width: 1200px;
+  --svg-height: 600px;
+  --margin: calc((var(--frame-width) - var(--svg-width))/2);
+  position: absolute;
+  left: var(--margin);
+  width: var(--svg-width);
+  height: var(--svg-height);
+  z-index: -1;
+  /* only needed to show waves-frame's border */
+}

@@ -1,0 +1,55 @@
+body {
+  --ctrl-color: #666;
+  --ctrl-color: #ffbb10;
+  ;
+}
+
+.ctrl-group {
+  /* mix-blend-mode: hard-light; */
+  opacity: 0.5;
+}
+
+.bezier-line {
+  stroke: var(--ctrl-color);
+  stroke-width: 1px;
+  stroke-width: 3px;
+  fill: transparent;
+}
+
+.radius {
+  stroke: var(--ctrl-color);
+  stroke-width: 1px;
+  /* stroke-width: 2px; */
+  /* stroke-dasharray: 2px; */
+  fill: transparent;
+}
+
+.path-point {
+  r: 4;
+  stroke: var(--ctrl-color);
+  fill: var(--ctrl-color);
+  /* fill: none; */
+  stroke-width: 2px;
+}
+
+.bezier-point {
+  r: 6;
+  stroke: var(--ctrl-color);
+  fill: var(--ctrl-color);
+  /* fill: none; */
+  stroke-width: 2px;
+}
+
+.orbit {
+  stroke: var(--ctrl-color);
+  stroke-width: 1px;
+  /* stroke-width: 2px; */
+  /* stroke-dasharray: 1px; */
+  fill: none;
+}
+
+.orbit-center {
+  r: 4;
+  stroke: var(--ctrl-color);
+  fill: var(--ctrl-color);
+}

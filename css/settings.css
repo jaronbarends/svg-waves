@@ -1,0 +1,71 @@
+.settings-wrapper {
+  width: 70rem;
+  margin: 16rem auto 0;
+}
+
+.meta-settings {
+  display: flex;
+  align-items: center;
+}
+
+.wave-selector option:nth-child(1) {
+  background: var(--wave-1-color);
+}
+
+
+.wave-selector option:nth-child(2) {
+  background: var(--wave-2-color);
+}
+
+.bezier-for-group {
+  display: flex;
+  align-items: center;
+  margin-left: 2em;
+}
+
+.run-cb {
+  margin-left: auto;
+}
+
+.settings {
+  margin-top: 1rem;
+}
+
+.wave-settings-box--is-visible {
+  display: block;
+}
+
+.wave-settings-box--is-hidden {
+  display: none;
+}
+
+.wave-settings {
+  display: flex;
+  justify-content: space-between;
+}
+
+.ranges {
+  margin: 1rem 0;
+  font-size: 0.875rem;
+  /* 14px */
+}
+
+.range-box {
+  margin-bottom: 0.5rem;
+}
+
+input {
+  vertical-align: middle;
+}
+
+output {
+  display: inline-block;
+  margin: 0 0.5em;
+  color: #999;
+}
+
+.value {
+  display: inline-block;
+  width: 4ch;
+  text-align: right;
+}
