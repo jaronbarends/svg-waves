@@ -2,6 +2,7 @@ import waveConfigs from './wave-config.js';
 import { SvgWave } from './SvgWaveView.js';
 import { SvgControlPoints } from './SvgControlPointsView.js';
 import { AnimatedWaveModel } from './AnimatedWaveModel.js';
+import { WaveConfigurator } from './WaveConfigurator.js';
 
 let wave1model;
 let wave2model;
@@ -34,13 +35,17 @@ const initControlPointsViews = () => {
   new SvgControlPoints(template, svg, wave2model);
 }
 
-const initConfigView = () => {}
+const initWavesConfiguratorView = () => {
+  const template = document.getElementById('settings-template');
+  const configuratorElm = document.getElementById(`waves-configurator`);
+  const wave1Configurator = new WaveConfigurator(wave1model, configuratorElm);
+}
 
 const init = () => {
   initAnimatedWaveModels();
   initSvgWaves();
   initControlPointsViews();
-  initConfigView();
+  initWavesConfiguratorView();
 };
 
 init();

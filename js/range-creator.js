@@ -78,7 +78,7 @@ const addRanges = (box, wave, elmId, point, startOrEnd, isControlPoint) => {
 }
 
 const createWaveSettings = (wave, idx) => {
-  const allSettingsBox = document.getElementById(`all-wave-settings`);
+  const allSettingsBox = document.getElementById(`waves-configurator`);
   const waveSettingsBox = document.getElementById(`settings-template`).content.cloneNode(true);
   const div = document.createElement('div');
   div.setAttribute('id', `wave-${idx}`);// somehow setAttribute doesn't work on waveSettingsBox, so use extra div

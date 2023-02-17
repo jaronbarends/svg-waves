@@ -1,6 +1,7 @@
 export class RangeInput {
   constructor(box, options) {
     // console.log('options:', options);
+    this.box = box;
     this.options = options;
     this.waveId = options.waveId;
 
@@ -46,8 +47,11 @@ export class RangeInput {
       value,
     };
     this.output.value = value;
-    const settingsEvent = new CustomEvent('wavesetting', { detail });
-    document.body.dispatchEvent(settingsEvent);
+    const settingsEvent = new CustomEvent('wavesettingchange', { detail });
+    // document.body.dispatchEvent(settingsEvent);
+    // make the input's containing box trigger an event
+    // (we can't easily let a custom class trigger events)
+    this.box.dispatchEvent(settingsEvent);
   }
 }
 
