@@ -5,7 +5,7 @@ import waveConfigs from './wave-config.js';
 const wavesWrapper = document.getElementById(`waves-frame`);
 const maxWidth = wavesWrapper.clientWidth;
 const maxHeight = wavesWrapper.clientHeight;
-const waveSelector = document.getElementById(`wave-selector`);
+const waveSelector = document.getElementById(`wave-configurator-selector`);
 
 const getPointSettingsOptions = (wave, point, startOrEnd, isControlPoint) => {
   let minX = 0;
@@ -78,8 +78,8 @@ const addRanges = (box, wave, elmId, point, startOrEnd, isControlPoint) => {
 }
 
 const createWaveSettings = (wave, idx) => {
-  const allSettingsBox = document.getElementById(`waves-configurator`);
-  const waveSettingsBox = document.getElementById(`settings-template`).content.cloneNode(true);
+  const allSettingsBox = document.getElementById(`wave-configurators`);
+  const waveSettingsBox = document.getElementById(`wave-configurator-template`).content.cloneNode(true);
   const div = document.createElement('div');
   div.setAttribute('id', `wave-${idx}`);// somehow setAttribute doesn't work on waveSettingsBox, so use extra div
   div.classList.add('wave-settings-box');

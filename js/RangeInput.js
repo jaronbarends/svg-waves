@@ -1,7 +1,9 @@
+/*
+ * range input for a single wave setting
+*/
 export class RangeInput {
-  constructor(box, options) {
-    // console.log('options:', options);
-    this.box = box;
+  constructor(containerElm, options) {
+    this.containerElm = containerElm;
     this.options = options;
     this.waveId = options.waveId;
 
@@ -33,7 +35,7 @@ export class RangeInput {
     div.appendChild(maxSpan);
     div.appendChild(output);
     div.appendChild(label);
-    box.appendChild(div);
+    containerElm.appendChild(div);
     this.output = output;
 
     input.addEventListener('change', (evt) => this.changeHandler(evt));
@@ -48,10 +50,9 @@ export class RangeInput {
     };
     this.output.value = value;
     const settingsEvent = new CustomEvent('wavesettingchange', { detail });
-    // document.body.dispatchEvent(settingsEvent);
-    // make the input's containing box trigger an event
+    // make the input's containing elm trigger an event
     // (we can't easily let a custom class trigger events)
-    this.box.dispatchEvent(settingsEvent);
+    this.containerElm.dispatchEvent(settingsEvent);
   }
 }
 

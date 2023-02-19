@@ -6,6 +6,7 @@ define a WaveView interface:
 define WaveModel interface
 - can be passed array of views
 - will call update method on each view with coords
+- has update and tick methods
 
 We could then create two WaveModels:
 - continuously flowing waves

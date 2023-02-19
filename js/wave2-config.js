@@ -1,7 +1,8 @@
 const fw = document.getElementById(`waves-frame`).clientWidth;// frame width
 
 const waveConfig = {
-  // id: 'wave-2',
+  id: 'wave-2',
+  uid: 'blue wave',
   start: {
     // starting point of curve orbits around this point
     center: {

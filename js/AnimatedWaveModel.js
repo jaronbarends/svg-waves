@@ -13,20 +13,19 @@ export class AnimatedWaveModel {
   constructor(waveConfig) {
     this.waveConfig = waveConfig;
     this.waveId = waveConfig.id;
+    this.waveUid = waveConfig.uid;
     // this.path = path;
     this.start = waveConfig.start;
     this.end = waveConfig.end;
     // is there a difference between defining observers here or outside of constructor?
     this.observers = [];
 
+    // TODO: remove this - should be part of higher level component that this component should observe
     this.runCb.addEventListener('change', () => {
       if (this.runCb.checked) {
         this.tick();
       }
     });
-
-    const handler = (evt) => this._wavesettingHandler(evt);
-    document.body.addEventListener('wavesetting', handler);
   }
   
   _toRadians(deg) {
@@ -102,7 +101,6 @@ export class AnimatedWaveModel {
 
   // may be called from outside
   update(data) {
-    console.log(data);
     const path = data.path;
     let parentObj = this[path[0]];// start or end
     for (let i=1; i<path.length-1; i++) {

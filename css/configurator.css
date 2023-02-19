@@ -1,4 +1,4 @@
-.settings-wrapper {
+.waves-configurator {
   width: 70rem;
   margin: 16rem auto 0;
 }
@@ -8,12 +8,12 @@
   align-items: center;
 }
 
-.wave-selector option:nth-child(1) {
+.wave-configurator-selector option:nth-child(1) {
   background: var(--wave-1-color);
 }
 
 
-.wave-selector option:nth-child(2) {
+.wave-configurator-selector option:nth-child(2) {
   background: var(--wave-2-color);
 }
 

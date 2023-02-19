@@ -1,8 +1,7 @@
 /*
  * configurator for a single wave
  */
-import { RangeInput } from './range.js';
-import waveConfigs from './wave-config.js';
+import { RangeInput } from './RangeInput.js';
 
 export class WaveConfigurator {
   constructor(model, containerElm) {
@@ -12,7 +11,7 @@ export class WaveConfigurator {
     this.wavesWrapper = document.getElementById(`waves-frame`);
     this.maxWidth = this.wavesWrapper.clientWidth;
     this.maxHeight = this.wavesWrapper.clientHeight;
-    this.waveSelector = document.getElementById(`wave-selector`);
+    this.waveSelector = document.getElementById(`wave-configurator-selector`);
 
     this.initSettings();
   }
@@ -91,9 +90,9 @@ export class WaveConfigurator {
   }
 
   createWaveSettings(wave, idx) {
-    const waveSettingsBox = document.getElementById(`settings-template`).content.cloneNode(true);
+    const waveSettingsBox = document.getElementById(`wave-configurator-template`).content.cloneNode(true);
     const div = document.createElement('div');
-    div.setAttribute('id', `wave-${idx}`);// somehow setAttribute doesn't work on waveSettingsBox, so use extra div
+    div.setAttribute('data-wave-id', this.model.waveId);// somehow setAttribute doesn't work on waveSettingsBox, so use extra div
     div.classList.add('wave-settings-box');
 
     this.addRanges(waveSettingsBox, wave, 'ranges-start', wave.start, 'start', false);
@@ -102,84 +101,16 @@ export class WaveConfigurator {
     this.addRanges(waveSettingsBox, wave, 'ranges-end-ctrl', wave.end.ctrl, 'end', true);
 
     div.appendChild(waveSettingsBox);
+    this.configuratorElm = div;
     this.containerElm.appendChild(div);
-  }
-
-  setWaveHandler(evt) {
-    const settingsBoxes = document.querySelectorAll(`.wave-settings-box`);
-    const id = evt.currentTarget.value;
-    
-    settingsBoxes.forEach(box => {
-      if (box.getAttribute('id') === `wave-${id}`) {
-        box.classList.add('wave-settings-box--is-visible');
-        box.classList.remove('wave-settings-box--is-hidden');
-      } else {
-        box.classList.add('wave-settings-box--is-hidden');
-        box.classList.remove('wave-settings-box--is-visible');
-      }
-    });
-    setAllWaveControlsVisibility();
-  }
-
-  setAllWaveControlsVisibility() {
-    const waveFrames = document.querySelectorAll('.waves-svg-clipper');
-    const id = waveSelector.value;
-    const bezierSetting = document.querySelector('input[name="bezier-for"]:checked').value;
-    console.log('bezierSetting:', bezierSetting);
-    waveFrames.forEach(frame => {
-      if (bezierSetting === 'active') {
-        const isActiveFrame = frame.getAttribute('id') === `waves-svg-clipper-${id}`;
-        setWaveControlsVisibility(frame, isActiveFrame);
-      } else if (bezierSetting === 'all') {
-        setWaveControlsVisibility(frame, true);
-      } else {
-        setWaveControlsVisibility(frame, false);
-      }
-    });
-  }
-
-  setWaveControlsVisibility(frame, isVisible) {
-    if (isVisible) {
-      frame.style.setProperty('--ctrl-display', 'block');
-      frame.style.overflow = 'visible';
-    } else {
-      frame.style.setProperty('--ctrl-display', 'none');
-      frame.style.overflow = 'hidden';
-    }
   }
 
   wavesettingchangeHandler(data) {
     this.model.update(data.detail);
-    // console.log('change: ', data);
   }
 
   initSettings() {
     const waveConfig = this.model.waveConfig;
     this.createWaveSettings(waveConfig);
-    // const option = document.createElement('option');
-    // option.value = idx;
-    // option.textContent = `Wave ${idx + 1}`;
-    // waveSelector.appendChild(option);
-  };
-
-  // initSettings() {
-  //   waveConfigs.forEach((wave, idx) => {
-  //     createWaveSettings(wave, idx);
-  //     const option = document.createElement('option');
-  //     option.value = idx;
-  //     option.textContent = `Wave ${idx + 1}`;
-  //     waveSelector.appendChild(option);
-  //   });
-  //   waveSelector.addEventListener('change', setWaveHandler);
-  //   waveSelector.dispatchEvent(new Event('change'));
-    
-  //   const bezierRadios = document.querySelectorAll(`input[name="bezier-for"]`);
-  //   bezierRadios.forEach(radio => {
-  //     radio.addEventListener('change', setAllWaveControlsVisibility);
-  //   })
-
-  //   setAllWaveControlsVisibility();
-  // };
-
-
+  }
 }
