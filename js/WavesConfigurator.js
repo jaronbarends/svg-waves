@@ -1,3 +1,6 @@
+/*
+ * configurator for multiple waves
+ */
 import { WaveConfigurator } from './WaveConfigurator.js';
 
 export class WavesConfigurator {

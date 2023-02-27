@@ -22,6 +22,12 @@
 				<use href="#wave-1" class="wave--left" />
 				<use href="#wave-2" class="wave--overlap" clip-path="url(#clip-path)" />
 
+				<mask id="frame-overflow-mask" class="frame-overflow-mask">
+					<polygon points="0,0 200,0 200,400 1000,400 1000,0 1200,0 1200,600 0,600" />
+				</mask>
+				<rect class="waves-frame-overflow" mask="url(#frame-overflow-mask)" />
+
+
 				<defs>
 					<path id="wave-1" />
 					<path id="wave-2"" />
@@ -66,38 +72,46 @@
 		</g>
 	</svg>
 
-	<input type="checkbox" class="run-cb" id="run-cb" checked="checked" /><label for="run-cb">Run</label>
-
-	<div class="waves-configurator">
-		<div class="settings">
-			<div class="meta-settings">
-				<label for="wave-configurator-selector">Edit settings for</label> <select id="wave-configurator-selector" class="wave-configurator-selector"></select>
-				<input type="checkbox" class="controls-cb" id="controls-cb" checked="checked" /><label for="controls-cb">Show bezier controls</label>
-			</div>
-
-			<!-- div that will contain configurator for each wave -->
-			<div id="wave-configurators"></div>
+	<div class="content-section">
+		<div class="start-stop-controls">
+			<!-- <input type="checkbox" class="run-cb" id="run-cb" checked="checked" /><label for="run-cb">Run</label> -->
+			<input type="checkbox" class="run-cb" id="run-cb" /><label for="run-cb">Run</label>
 		</div>
-
-		<template id="wave-configurator-template">
-			<div class="wave-settings">
-				<div class="point-ranges">
-					<h2>curve starting point</h2>
-					<h3>curve point</h3>
-					<div data-id="ranges-start" class="ranges"></div>
-					<h3>bezier control point</h3>
-					<div data-id="ranges-start-ctrl" class="ranges"></div>
-				</div>
-				<div class="point-ranges">
-					<h2>curve ending point</h2>
-					<h3>curve point</h3>
-					<div data-id="ranges-end" class="ranges"></div>
-					<h3>bezier control point</h3>
-					<div data-id="ranges-end-ctrl" class="ranges"></div>
-				</div>
-			</div>
-		</template>
 	</div>
+
+	<div class="content-section">
+		<div class="waves-configurator">
+			<div class="settings">
+				<div class="meta-settings">
+					<label for="wave-configurator-selector">Edit settings for</label> <select id="wave-configurator-selector" class="wave-configurator-selector"></select>
+					<input type="checkbox" class="controls-cb" id="controls-cb" /><label for="controls-cb">Show bezier controls</label>
+					<!-- <input type="checkbox" class="controls-cb" id="controls-cb" checked="checked" /><label for="controls-cb">Show bezier controls</label> -->
+				</div>
+
+				<!-- div that will contain configurator for each wave -->
+				<div id="wave-configurators"></div>
+			</div>
+
+			<template id="wave-configurator-template">
+				<div class="wave-settings">
+					<div class="point-ranges">
+						<h2>curve starting point</h2>
+						<h3>curve point</h3>
+						<div data-id="ranges-start" class="ranges"></div>
+						<h3>bezier control point</h3>
+						<div data-id="ranges-start-ctrl" class="ranges"></div>
+					</div>
+					<div class="point-ranges">
+						<h2>curve ending point</h2>
+						<h3>curve point</h3>
+						<div data-id="ranges-end" class="ranges"></div>
+						<h3>bezier control point</h3>
+						<div data-id="ranges-end-ctrl" class="ranges"></div>
+					</div>
+				</div>
+			</template>
+		</div>
+</div>
 
 	<script type="module" src="js/animated-wave-creator.js"></script>
 </body>

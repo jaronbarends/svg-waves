@@ -4,9 +4,9 @@
 import { RangeInput } from './RangeInput.js';
 
 export class WaveConfigurator {
-  constructor(model, containerElm) {
+  constructor(waveModel, containerElm) {
     // add options for start or end point
-    this.model = model;
+    this.waveModel = waveModel;
     this.containerElm = containerElm;
     this.wavesWrapper = document.getElementById(`waves-frame`);
     this.maxWidth = this.wavesWrapper.clientWidth;
@@ -92,7 +92,7 @@ export class WaveConfigurator {
   createWaveSettings(wave, idx) {
     const waveSettingsBox = document.getElementById(`wave-configurator-template`).content.cloneNode(true);
     const div = document.createElement('div');
-    div.setAttribute('data-wave-id', this.model.waveId);// somehow setAttribute doesn't work on waveSettingsBox, so use extra div
+    div.setAttribute('data-wave-id', this.waveModel.waveId);// somehow setAttribute doesn't work on waveSettingsBox, so use extra div
     div.classList.add('wave-settings-box');
 
     this.addRanges(waveSettingsBox, wave, 'ranges-start', wave.start, 'start', false);
@@ -106,11 +106,44 @@ export class WaveConfigurator {
   }
 
   wavesettingchangeHandler(data) {
-    this.model.update(data.detail);
+    // data.detail contains path to wave-property and new value
+    // path looks like ['start', 'center', 'x']
+    const path = data.detail.path; 
+    let parentObj = this.waveModel[path[0]];// start or end
+    for (let i=1; i<path.length-1; i++) {
+      parentObj = parentObj[path[i]];
+    }
+    const prop = path[path.length -1];
+    parentObj[prop] = parseFloat(data.detail.value);
+    
+    this.waveModel.updateModel(updatedModelData);
+
+    // if we don't want to manipulate data on the model directly,
+    // we can create clones like this:
+
+    // create deep clones
+    // const start = JSON.parse(JSON.stringify(this.waveModel.start));
+    // const end = JSON.parse(JSON.stringify(this.waveModel.end));
+    // const updatedModelData = {
+    //   start,
+    //   end,
+    // }
+    
+    // // data.detail contains path to wave-property and new value
+    // // path looks like ['start', 'center', 'x']
+    // const path = data.detail.path; 
+    // let parentObj = updatedModelData[path[0]];// start or end
+    // for (let i=1; i<path.length-1; i++) {
+    //   parentObj = parentObj[path[i]];
+    // }
+    // const prop = path[path.length -1];
+    // parentObj[prop] = parseFloat(data.detail.value);
+    
+    // this.waveModel.updateModel(updatedModelData);
   }
 
   initSettings() {
-    const waveConfig = this.model.waveConfig;
+    const waveConfig = this.waveModel.waveConfig;
     this.createWaveSettings(waveConfig);
   }
 }

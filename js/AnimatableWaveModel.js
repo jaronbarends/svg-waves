@@ -1,14 +1,9 @@
 /*
  * model for a single animatable wave
- * tick
  * addObserver
- * _updateObservers
- * update
+ * updateModel
 */
 export class AnimatableWaveModel {
-  tickTimer = null;
-  timeoutDuration = 50;
-  runCb = document.getElementById(`run-cb`);
 
   constructor(waveConfig, isAnimated = false) {
     this.isAnimated = isAnimated;
@@ -19,80 +14,21 @@ export class AnimatableWaveModel {
     this.end = waveConfig.end;
     // is there a difference between defining observers here or outside of constructor?
     this.observers = [];
-
-    // TODO: remove this - should be part of higher level component that this component should observe
-    this.runCb.addEventListener('change', () => {
-      if (this.runCb.checked) {
-        this.tick();
-      }
-    });
   }
   
-  _toRadians(deg) {
-    return 2 * Math.PI * deg / 360;
-  }
-
-  // update the x and y coordinate of the start or end point of the wave
-  updateWaveCoords(point) {
-    point.angle += point.angleIncrement;
-    const rad = this._toRadians(point.angle);
-    // looks better if orbits aren't fully round, so apply scaling
-    point.x = point.center.x + point.orbitXScale * Math.cos(rad) * point.r;
-    point.y = point.center.y + point.orbitYScale * Math.sin(rad) * point.r;
-  }
-
-  // update the x and y coordinate of the bezier control point of the wave's start or end point
-  _updateControlPointCoords(startOrEnd) {
-    const ctrl = startOrEnd.ctrl;
-    ctrl.angle += ctrl.angleIncrement;
-    const rad = this._toRadians(ctrl.angle);
-    ctrl.x = startOrEnd.center.x + ctrl.center.x + ctrl.orbitXScale * Math.cos(rad) * ctrl.r;
-    ctrl.y = startOrEnd.center.y + ctrl.center.y + ctrl.orbitYScale * Math.sin(rad) * ctrl.r;
-  }
-
-  _wavesettingHandler(evt) {
-    const detail = evt.detail;
-    if (detail.waveId === this.waveId) {
-      const path = detail.path;
-      let parentObj = this[path[0]];// start or end
-      for (let i=1; i<path.length-1; i++) {
-        parentObj = parentObj[path[i]];
-      }
-      const prop = path[path.length -1];
-      parentObj[prop] = parseFloat(detail.value);
-    }
-  }
-
-  _updateObservers(waveData) {
+  // _updateObservers(waveData) {
+  _updateObservers() {
     this.observers.forEach(observer => {
       if (!observer.update) {
         console.warn(`observer ${observer} does not have required "update" method`);
         return;
       }
+      const waveData = {
+        start: this.start,
+        end: this.end,
+      };
       observer.update(waveData);
     })
-  }
-
-  // may be called from outside
-  // SHOULDN'T THIS BE A CONTROLLER INSTEAD?
-  // so we would have a circular-motion-controller
-  tick() {
-    clearTimeout(this.tickTimer);
-    if (this.runCb.checked) {
-      const tick = () => { this.tick() };// directly calling this.tick in timeout gives scoping issues
-      this.tickTimer = setTimeout(tick, this.timeoutDuration);
-    }
-    this.updateWaveCoords(this.start);
-    this.updateWaveCoords(this.end);
-    this._updateControlPointCoords(this.start);
-    this._updateControlPointCoords(this.end);
-
-    const waveData = {
-      start: this.start,
-      end: this.end,
-    };
-
-    this._updateObservers(waveData);
   }
 
   // may be called from outside
@@ -100,14 +36,18 @@ export class AnimatableWaveModel {
     this.observers.push(observer);
   }
 
-  // may be called from outside
-  update(data) {
-    const path = data.path;
-    let parentObj = this[path[0]];// start or end
-    for (let i=1; i<path.length-1; i++) {
-      parentObj = parentObj[path[i]];
-    }
-    const prop = path[path.length -1];
-    parentObj[prop] = parseFloat(data.value);
+  // meant to be called from external controller
+  updateModel(data) {
+    // we're now passing reference to the model directly to the controller,
+    // and they're directly manipulating the model's data
+    // should we create a copy directly when adding the model to the controller?
+    // what happens then if another controller updates the model?
+    // or create a copy before changing the data?
+    // if we no longer change the model's data directly,
+    // we need to update the props here:
+    // this.start = data.start;
+    // this.end = data.end;
+
+    this._updateObservers(data);
   }
 }

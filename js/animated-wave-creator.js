@@ -3,6 +3,7 @@ import { SvgWave } from './SvgWaveView.js';
 import { SvgControlPoints } from './SvgControlPointsView.js';
 import { AnimatableWaveModel } from './AnimatableWaveModel.js';
 import { WavesConfigurator } from './WavesConfigurator.js';
+import { CircularMotionController } from './CircularMotionController.js';
 
 let wave1Model;
 let wave2Model;
@@ -13,9 +14,6 @@ const initAnimatableWaveModels = () => {
 
   wave1Model = new AnimatableWaveModel(wave1config);
   wave2Model = new AnimatableWaveModel(wave2config);
-
-  wave1Model.tick();
-  wave2Model.tick();
 };
 
 const initSvgWaves = () => {
@@ -45,6 +43,11 @@ const init = () => {
   initSvgWaves();
   initControlPointsViews();
   initWavesConfigurator();
+
+  const circularMotionController = new CircularMotionController();
+  circularMotionController.addModel(wave1Model);
+  circularMotionController.addModel(wave2Model);
+  circularMotionController.tick();
 };
 
 init();

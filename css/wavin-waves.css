@@ -12,7 +12,7 @@
   /* border: 1px dotted rgba(0, 0, 0, 0.5); */
 }
 
-.waves-passepartout {
+.waves-frame-overflow {
   /* only necessary to show greyed out area when overflow is visible */
   fill: rgba(255, 255, 255, 0.3);
   x: 0;
@@ -21,7 +21,7 @@
   height: var(--svg-height);
 }
 
-.passepartout-mask polygon {
+.frame-overflow-mask polygon {
   fill: white;
 }
 
