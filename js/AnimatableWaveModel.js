@@ -1,20 +1,20 @@
 /*
- * model for a single animated wave
+ * model for a single animatable wave
  * tick
  * addObserver
  * _updateObservers
  * update
 */
-export class AnimatedWaveModel {
+export class AnimatableWaveModel {
   tickTimer = null;
   timeoutDuration = 50;
   runCb = document.getElementById(`run-cb`);
 
-  constructor(waveConfig) {
+  constructor(waveConfig, isAnimated = false) {
+    this.isAnimated = isAnimated;
     this.waveConfig = waveConfig;
     this.waveId = waveConfig.id;
     this.waveUid = waveConfig.uid;
-    // this.path = path;
     this.start = waveConfig.start;
     this.end = waveConfig.end;
     // is there a difference between defining observers here or outside of constructor?
@@ -51,7 +51,6 @@ export class AnimatedWaveModel {
   }
 
   _wavesettingHandler(evt) {
-    console.log('handler');
     const detail = evt.detail;
     if (detail.waveId === this.waveId) {
       const path = detail.path;
@@ -75,6 +74,8 @@ export class AnimatedWaveModel {
   }
 
   // may be called from outside
+  // SHOULDN'T THIS BE A CONTROLLER INSTEAD?
+  // so we would have a circular-motion-controller
   tick() {
     clearTimeout(this.tickTimer);
     if (this.runCb.checked) {

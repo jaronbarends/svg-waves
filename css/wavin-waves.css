@@ -2,18 +2,31 @@
 .waves-frame {
   --frame-width: 800px;
   --frame-height: 400px;
+  --svg-width: 1200px;
+  --svg-height: 600px;
   position: relative;
   /* overflow: hidden; */
-  margin: 0 auto;
+  margin: 0 auto calc(var(--svg-height) - var(--frame-height));
   width: var(--frame-width);
   height: var(--frame-height);
-  border: 1px dotted rgba(0, 0, 0, 0.5);
+  /* border: 1px dotted rgba(0, 0, 0, 0.5); */
+}
+
+.waves-passepartout {
+  /* only necessary to show greyed out area when overflow is visible */
+  fill: rgba(255, 255, 255, 0.3);
+  x: 0;
+  y: 0;
+  width: var(--svg-width);
+  height: var(--svg-height);
+}
+
+.passepartout-mask polygon {
+  fill: white;
 }
 
 /* the waves-svg may be bigger than the waves-frame. center it horizontally, and let the top simply be the top */
 .waves-svg {
-  --svg-width: 1200px;
-  --svg-height: 600px;
   --margin: calc((var(--frame-width) - var(--svg-width))/2);
   position: absolute;
   left: var(--margin);
@@ -21,4 +34,16 @@
   height: var(--svg-height);
   z-index: -1;
   /* only needed to show waves-frame's border */
+}
+
+.wave--left {
+  fill: #3CA872;
+}
+
+.wave--right {
+  fill: #169EFB;
+}
+
+.wave--overlap {
+  fill: #2F3046;
 }
