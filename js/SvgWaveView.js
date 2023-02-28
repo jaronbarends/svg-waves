@@ -35,7 +35,6 @@ export class SvgWave {
     const closingStr = `L ${end.x} ${this.svgHeight} L ${start.x} ${this.svgHeight} Z`
   
     const wavePath = `M ${waveStartCoordsStr} C ${ctrlPointStartStr}, ${ctrlPointEndStr}, ${waveEndCoordsStr} ${closingStr}`;
-
     this.path.setAttribute('d', wavePath);
   }
 }

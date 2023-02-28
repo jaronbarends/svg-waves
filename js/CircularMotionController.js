@@ -58,13 +58,12 @@ export class CircularMotionController {
   // may be called from outside
   tick() {
     clearTimeout(this.tickTimer);
-      if (this.runCb.checked) {
-        const tick = () => { this.tick() };// directly calling this.tick in timeout gives scoping issues
-        this.tickTimer = setTimeout(tick, this.timeoutDuration);
-      // }
-
-      this.waveModels.forEach(waveModel => this._modelTick(waveModel));
+    if (this.runCb.checked) {
+      const tick = () => { this.tick() };// directly calling this.tick in timeout gives scoping issues
+      this.tickTimer = setTimeout(tick, this.timeoutDuration);
     }
+
+    this.waveModels.forEach(waveModel => this._modelTick(waveModel));
   }
 
   // may be called from outside

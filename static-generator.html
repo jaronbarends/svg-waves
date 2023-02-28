@@ -10,8 +10,6 @@
 
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/wavin-waves.css">
-	<link rel="stylesheet" href="css/control-points.css">
-	<link rel="stylesheet" href="css/configurator.css">
 </head>
 
 <body>
@@ -74,46 +72,14 @@
 
 	<div class="content-section">
 		<div class="start-stop-controls">
-			<!-- <input type="checkbox" class="run-cb" id="run-cb" checked="checked" /><label for="run-cb">Run</label> -->
 			<input type="checkbox" class="run-cb" id="run-cb" /><label for="run-cb">Run</label>
 		</div>
 	</div>
 
 	<div class="content-section">
-		<div class="waves-configurator">
-			<div class="settings">
-				<div class="meta-settings">
-					<label for="wave-configurator-selector">Edit settings for</label> <select id="wave-configurator-selector" class="wave-configurator-selector"></select>
-					<input type="checkbox" class="controls-cb" id="controls-cb" /><label for="controls-cb">Show bezier controls</label>
-					<!-- <input type="checkbox" class="controls-cb" id="controls-cb" checked="checked" /><label for="controls-cb">Show bezier controls</label> -->
-				</div>
-
-				<!-- div that will contain configurator for each wave -->
-				<div id="wave-configurators"></div>
-			</div>
-
-			<template id="wave-configurator-template">
-				<div class="wave-settings">
-					<div class="point-ranges">
-						<h2>curve starting point</h2>
-						<h3>curve point</h3>
-						<div data-id="ranges-start" class="ranges"></div>
-						<h3>bezier control point</h3>
-						<div data-id="ranges-start-ctrl" class="ranges"></div>
-					</div>
-					<div class="point-ranges">
-						<h2>curve ending point</h2>
-						<h3>curve point</h3>
-						<div data-id="ranges-end" class="ranges"></div>
-						<h3>bezier control point</h3>
-						<div data-id="ranges-end-ctrl" class="ranges"></div>
-					</div>
-				</div>
-			</template>
-		</div>
 </div>
 
-	<script type="module" src="js/animated-wave-creator.js"></script>
+	<script type="module" src="js/static-wave-creator.js"></script>
 </body>
 
 </html>

@@ -1,4 +1,4 @@
-import waveConfigs from './wave-config.js';
+import animatedWaveConfigs from '../config/animated-waves-config.js';
 import { SvgWave } from './SvgWaveView.js';
 import { SvgControlPoints } from './SvgControlPointsView.js';
 import { AnimatableWaveModel } from './AnimatableWaveModel.js';
@@ -9,11 +9,11 @@ let wave1Model;
 let wave2Model;
 
 const initAnimatableWaveModels = () => {
-  const wave1config = waveConfigs[0];
-  const wave2config = waveConfigs[1];
+  const animatedWave1Config = animatedWaveConfigs[0];
+  const animatedWave2Config = animatedWaveConfigs[1];
 
-  wave1Model = new AnimatableWaveModel(wave1config);
-  wave2Model = new AnimatableWaveModel(wave2config);
+  wave1Model = new AnimatableWaveModel(animatedWave1Config);
+  wave2Model = new AnimatableWaveModel(animatedWave2Config);
 };
 
 const initSvgWaves = () => {

@@ -1,58 +1,61 @@
+// config for animated wave controlled by circular motion
+
 const fw = document.getElementById(`waves-frame`).clientWidth;// frame width
 
-const waveConfig = {
-  id: 'wave-2',
-  uid: 'blue wave',
+const animatedWaveConfig = {
+  id: 'wave-1',
+  uid: 'green wave',
   start: {
     // starting point of curve orbits around this point
+    // todo: rename to orbitCenter?
     center: {
-      x: 120,
-      y: 450,
+      x: 100,
+      y: 200,
     },
     r: 30,
     angle: 0,// starting angle
-    angleIncrement: 0.85,
-    orbitXScale: 0.85,
+    angleIncrement: 0.7,
+    orbitXScale: 0.5,
     orbitYScale: 1,
 
     ctrl: {
       // starting control point of curve orbits around this point
       center: {
         x: 100,// distance to curve center point
-        y: 0,
+        y: -100,
       },
-      r: 70,
-      angle: 120,// starting angle
-      angleIncrement: 0.85,
-      orbitXScale: 1,
-      orbitYScale: 2,
+      r: 50,
+      angle: 0,// starting angle
+      angleIncrement: 0.7,
+      orbitXScale: 2,
+      orbitYScale: 1,
     },
   },
   end: {
     // starting point of curve orbits around this point
     center: {
       x: fw + 300,
-      y: 100,
+      y: 500,
     },
     r: 30,
-    angle: 0,// starting angle
-    angleIncrement: 0.85,
-    orbitXScale: 0.2,
-    orbitYScale: 0.2,
+    angle: 180,// starting angle
+    angleIncrement: 0.7,
+    orbitXScale: 0.5,
+    orbitYScale: 0.5,
 
     ctrl: {
       // ending control point of curve orbits around this point
       center: {
-        x: -200,
+        x: -100,
         y: 0,
       },
-      r: 50,
-      angle: 300,// starting angle
-      angleIncrement: 0.85,
+      r: 70,
+      angle: 0,// starting angle
+      angleIncrement: 0.7,
       orbitXScale: 1,
       orbitYScale: 2,
     },
   }
 };
 
-export default waveConfig;
+export default animatedWaveConfig;
