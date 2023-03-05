@@ -8,9 +8,9 @@ export class WaveConfigurator {
     // add options for start or end point
     this.waveModel = waveModel;
     this.containerElm = containerElm;
-    this.wavesWrapper = document.getElementById(`waves-frame`);
-    this.maxWidth = this.wavesWrapper.clientWidth;
-    this.maxHeight = this.wavesWrapper.clientHeight;
+    this.wavesFrame = document.getElementById(`waves-frame`);
+    this.maxWidth = this.wavesFrame.clientWidth;
+    this.maxHeight = this.wavesFrame.clientHeight;
     this.waveSelector = document.getElementById(`wave-configurator-selector`);
 
     this.initSettings();

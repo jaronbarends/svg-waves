@@ -1,0 +1,12 @@
+.draggable-point {
+  --size: 1rem;
+  position: absolute;
+  display: block;
+  padding: 0;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  border: 2px solid red;
+  background: white;
+  translate: -50% -50%;
+}

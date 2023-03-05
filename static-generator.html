@@ -10,76 +10,55 @@
 
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/wavin-waves.css">
+	<link rel="stylesheet" href="css/static-waves-configurator.css">
 </head>
 
 <body>
-	<div class="wrapper">
-		<div id="waves-frame" class="waves-frame">
-			<svg viewbox="0 0 1200 600" id="waves-svg" class="waves-svg">
-				<use href="#wave-2" class="wave--right" />
-				<use href="#wave-1" class="wave--left" />
-				<use href="#wave-2" class="wave--overlap" clip-path="url(#clip-path)" />
+<div class="wrapper">
+	<div id="waves-frame" class="waves-frame">
+		<svg viewbox="0 0 1200 600" id="waves-svg" class="waves-svg">
+			<use href="#wave-2" class="wave--right" />
+			<use href="#wave-1" class="wave--left" />
+			<use href="#wave-2" class="wave--overlap" clip-path="url(#clip-path)" />
 
-				<mask id="frame-overflow-mask" class="frame-overflow-mask">
-					<polygon points="0,0 200,0 200,400 1000,400 1000,0 1200,0 1200,600 0,600" />
-				</mask>
-				<rect class="waves-frame-overflow" mask="url(#frame-overflow-mask)" />
+			<mask id="frame-overflow-mask" class="frame-overflow-mask">
+				<polygon points="0,0 200,0 200,400 1000,400 1000,0 1200,0 1200,600 0,600" />
+			</mask>
+			<rect class="waves-frame-overflow" mask="url(#frame-overflow-mask)" />
 
 
-				<defs>
-					<path id="wave-1" />
-					<path id="wave-2"" />
-					<clipPath id="clip-path">
-						<path id="wave-1-as-clip-path" />
-					</clipPath>
-				</defs>
-			</svg>
-		</div>
+			<defs>
+				<path id="wave-1" />
+				<path id="wave-2"" />
+				<clipPath id="clip-path">
+					<path id="wave-1-as-clip-path" />
+				</clipPath>
+			</defs>
+		</svg>
 	</div>
-
-	<!-- template for wave-describing elements (beziers, points, radiuses) -->
-	<svg id="wave-controls-template" width="0" height="0" xmlns="http://www.w3.org/2000/svg">
-		<g class="ctrl-group">
-			<!-- wave start -->
-			<!-- path -->
-			<path class="radius path-point-radius" data-id="path-point-1-radius" />
-			<ellipse class="orbit" data-id="path-point-1-orbit" />
-			<circle class="orbit-center" data-id="path-point-1-orbit-center" />
-			<circle class="path-point" data-id="path-point-1" />
-
-			<!-- bezier -->
-			<path class="bezier-line" data-id="bezier-line-1" />
-			<path class="radius" data-id="bezier-point-1-radius" />
-			<ellipse class="orbit" data-id="bezier-point-1-orbit" />
-			<circle class="orbit-center" data-id="bezier-point-1-orbit-center" />
-			<circle class="bezier-point" data-id="bezier-point-1" />
-
-			<!-- wave end -->
-			<!-- path -->
-			<path class="radius path-point-radius" data-id="path-point-2-radius" />
-			<ellipse class="orbit" data-id="path-point-2-orbit" />
-			<circle class="orbit-center" data-id="path-point-2-orbit-center" />
-			<circle class="path-point" data-id="path-point-2" />
-
-			<!-- bezier -->
-			<path class="radius" data-id="bezier-point-2-radius" />
-			<path class="bezier-line" data-id="bezier-line-2" />
-			<ellipse class="orbit" data-id="bezier-point-2-orbit" />
-			<circle class="orbit-center" data-id="bezier-point-2-orbit-center" />
-			<circle class="bezier-point" data-id="bezier-point-2" />
-		</g>
-	</svg>
-
-	<div class="content-section">
-		<div class="start-stop-controls">
-			<input type="checkbox" class="run-cb" id="run-cb" /><label for="run-cb">Run</label>
-		</div>
-	</div>
-
-	<div class="content-section">
 </div>
 
-	<script type="module" src="js/static-wave-creator.js"></script>
+
+<template id="control-points-template">
+	<button class="draggable-point draggable-point--path" data-id="draggable-point-path-1"></button>
+	<button class="draggable-point draggable-point--ctrl" data-id="draggable-point-ctrl-1"></button>
+	<button class="draggable-point draggable-point--path" data-id="draggable-point-path-2"></button>
+	<button class="draggable-point draggable-point--ctrl" data-id="draggable-point-ctrl-2"></button>
+</template>
+
+<svg id="wave-controls-template" width="0" height="0" xmlns="http://www.w3.org/2000/svg">
+	<g class="ctrl-group">
+		<!-- wave start -->
+		<path class="bezier-line" data-id="bezier-line-1" />
+		<circle class="bezier-point" data-id="bezier-point-1" />
+		<!-- wave end -->
+		<path class="bezier-line" data-id="bezier-line-2" />
+		<circle class="bezier-point" data-id="bezier-point-2" />
+	</g>
+</svg>
+
+
+<script type="module" src="js/static-wave-creator.js"></script>
 </body>
 
 </html>

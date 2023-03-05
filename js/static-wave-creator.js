@@ -1,9 +1,7 @@
 import staticWaveConfigs from '../config/static-waves-config.js';
 import { SvgWave } from './SvgWaveView.js';
-import { SvgControlPoints } from './SvgControlPointsView.js';
 import { AnimatableWaveModel } from './AnimatableWaveModel.js';
-import { WavesConfigurator } from './WavesConfigurator.js';
-import { CircularMotionController } from './CircularMotionController.js';
+import { StaticWaveConfigurator } from './StaticWaveConfigurator.js';
 
 let wave1Model;
 let wave2Model;
@@ -30,8 +28,14 @@ const initSvgWaves = () => {
 const init = () => {
   initAnimatableWaveModels();
   initSvgWaves();
+
+  // update models for first render
   wave1Model.updateModel();
   wave2Model.updateModel();
+
+  const wavesFrame = document.getElementById(`waves-frame`);
+  const wavesSvg = document.getElementById(`waves-svg`);
+  new StaticWaveConfigurator(wave1Model, wavesFrame, wavesSvg);
 };
 
 init();
