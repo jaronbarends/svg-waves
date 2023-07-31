@@ -1,3 +1,7 @@
+:root {
+  --ctrl-color: red;
+}
+
 .draggable-point {
   --size: 1rem;
   position: absolute;
@@ -6,7 +10,13 @@
   width: var(--size);
   height: var(--size);
   border-radius: 50%;
-  border: 2px solid red;
+  border: 2px solid var(--ctrl-color);
   background: white;
   translate: -50% -50%;
+}
+
+.bezier-line {
+  stroke: var(--ctrl-color);
+  stroke-width: 3px;
+  fill: transparent;
 }

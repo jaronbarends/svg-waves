@@ -36,6 +36,7 @@ const init = () => {
   const wavesFrame = document.getElementById(`waves-frame`);
   const wavesSvg = document.getElementById(`waves-svg`);
   new StaticWaveConfigurator(wave1Model, wavesFrame, wavesSvg);
+  // new StaticWaveConfigurator(wave2Model, wavesFrame, wavesSvg);
 };
 
 init();
