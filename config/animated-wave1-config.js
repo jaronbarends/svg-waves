@@ -9,25 +9,25 @@ const animatedWaveConfig = {
     // starting point of curve orbits around this point
     // todo: rename to orbitCenter?
     center: {
-      x: 100,
-      y: 200,
+      x: 160,
+      y: 160,
     },
     r: 30,
     angle: 0,// starting angle
-    angleIncrement: 0.7,
-    orbitXScale: 0.5,
+    angleIncrement: 3,
+    orbitXScale: 1,
     orbitYScale: 1,
 
     ctrl: {
       // starting control point of curve orbits around this point
       center: {
         x: 100,// distance to curve center point
-        y: -100,
+        y: -80,
       },
-      r: 50,
+      r: 75,
       angle: 0,// starting angle
-      angleIncrement: 0.7,
-      orbitXScale: 2,
+      angleIncrement: 4,
+      orbitXScale: 1,
       orbitYScale: 1,
     },
   },
@@ -35,13 +35,13 @@ const animatedWaveConfig = {
     // starting point of curve orbits around this point
     center: {
       x: fw + 300,
-      y: 500,
+      y: 400,
     },
     r: 30,
     angle: 180,// starting angle
-    angleIncrement: 0.7,
-    orbitXScale: 0.5,
-    orbitYScale: 0.5,
+    angleIncrement: 4,
+    orbitXScale: 1,
+    orbitYScale: 1,
 
     ctrl: {
       // ending control point of curve orbits around this point
@@ -51,9 +51,9 @@ const animatedWaveConfig = {
       },
       r: 70,
       angle: 0,// starting angle
-      angleIncrement: 0.7,
+      angleIncrement: 3,
       orbitXScale: 1,
-      orbitYScale: 2,
+      orbitYScale: 1,
     },
   }
 };

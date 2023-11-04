@@ -30,6 +30,13 @@
   margin-top: 1rem;
 }
 
+.wave-configurators {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%; 
+}
+
 .wave-settings-box--is-visible {
   display: block;
 }
@@ -41,6 +48,11 @@
 .wave-settings {
   display: flex;
   justify-content: space-between;
+}
+
+.point-ranges {
+  padding: 0 0.5rem;
+  background: rgba(255, 255, 255, 0.5);
 }
 
 .ranges {
